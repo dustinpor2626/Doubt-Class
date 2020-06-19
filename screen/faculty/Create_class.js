@@ -21,14 +21,19 @@ setemail = async () => this.setState({email:await AsyncStorage.getItem('email')}
 
 
 onCreate = () => {
+
+  if(this.state.subject != '' && this.state.code != ''){
     firebase.database().ref('Faculty/' + this.state.email.replace('.','') + '/code')
     .child(this.state.code)
     .push({
         code:this.state.code,
         subject:this.state.subject
     });
-
+    
     this.props.navigation.navigate('teacherHome');
+  }else{
+    alert('Incomplete Info');
+  }
 }
 
 render(){

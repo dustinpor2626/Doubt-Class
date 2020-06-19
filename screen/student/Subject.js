@@ -20,11 +20,11 @@ export default class Subject extends Component {
       this.getemail();
       setInterval(() => {
         this.fetch();
-      },500)
+      },1000)
     }
 
 
-    getemail=async () => this.setState({email:await AsyncStorage.getItem('email')})
+    getemail = async () => this.setState({email:await AsyncStorage.getItem('email')})
 
     
     fetch = () => {

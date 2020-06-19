@@ -17,7 +17,6 @@ export default class Application extends Component {
     }
     
 componentDidMount(){
-
   this.getEmail();
 
   setInterval(() => {
@@ -153,7 +152,7 @@ ControlPanel = () => {
         <Body>
     <Text note >code:    {data}</Text>
     <Text note >Participant Number: {this.getParticipant(data)}</Text>
-    <Text note >Request Number: {this.getParticipant(data)}</Text>
+    <Text note >Request Number: {this.getRequest(data)}</Text>
     <Text note >Total Doubt: {this.getdoubt(data)}</Text>
         </Body>
       </CardItem>

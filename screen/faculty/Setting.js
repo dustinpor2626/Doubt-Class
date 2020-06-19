@@ -60,27 +60,24 @@ getsubject = (code) => {
     firebase.database().ref('Faculty/' + this.state.email.replace('.','') + '/code/' + sub_code + '/Participants') 
     .on('value',data => {
             if(data.val()){
-
-                var x = Object.keys(data.val());
-                for (var i = 0 ; i < x.length ; i++){
-                    firebase.database().ref('Faculty/' + this.state.email.replace('.','') + '/code/' + sub_code + '/Participants/' + x[i])
-                    .on('value',data => {
-                            if(data.val()){
-                                var x = Object.values(data.val());
-                                firebase.database().ref('Student/' + x['0'].replace('.','') + '/Subject/' + sub)
-                                .remove()
-                            }
-                    })
-                }
+                var x  = Object.values(data.val());
+                this.participantArray(x,sub);
             }
-    })
-
-    setTimeout(() => {
-        firebase.database().ref('Faculty/' + this.state.email.replace('.','') + '/code/' + sub_code)
-        .remove()
-    }, 0);
+    });
+    
+      firebase.database().ref('Faculty/' + this.state.email.replace('.','') + '/code/' + sub_code)
+      .remove();
 
   }
+
+
+  participantArray = (x,sub) => {
+
+    x.forEach(element => {
+          firebase.database().ref('Student/' + element.Email.replace('.','') + '/Subject/' + sub)
+          .remove()
+    });
+ }
 
 
   deleteAccount = () => {

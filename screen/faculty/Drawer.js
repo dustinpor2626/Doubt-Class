@@ -27,7 +27,6 @@ componentDidMount(){
     this.sub_codeList(); 
   },1000);
 
-
 }
 
 
@@ -72,6 +71,7 @@ getsubject = (code) => {
 
 }
 
+
 LogOut = () => {
   AsyncStorage.setItem('email','');
   AsyncStorage.setItem('type','');
@@ -86,7 +86,7 @@ render(){
 
         <Container>
 
-        <Thumbnail style={{width:'100%',height:'30%'}} source={{}} />
+        <Thumbnail style={{width:'100%',height:'30%',borderRadius:0}} source={require('./../faculty.png')} />
 
 <ScrollView showsVerticalScrollIndicator={false}>
 

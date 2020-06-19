@@ -49,8 +49,8 @@ fetch = () => {
 
     firebase.database().ref('Faculty/' + this.state.email.replace('.','') + '/code/' + this.state.code + '/Request')
     .on('value',data => {
-        console.log(data);
-        if(data.val())
+
+      if(data.val())
         {
             var x = Object.values(data.val());
             this.setState({request:x});
@@ -222,7 +222,7 @@ return(
             Alert.alert('Remove','Participant no longer able to ask !!',[
               {
                 text:'Remove',
-                onPress:this.remove(data.Email),
+                onPress:() => this.remove(data.Email),
               },
               {
                 text:'Cancel',

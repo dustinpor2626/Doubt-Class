@@ -28,6 +28,7 @@ export default class DoubtForm extends Component {
         },0)
     }
 
+
     getmail = async () => this.setState({email:await AsyncStorage.getItem('email')});
 
 

@@ -89,7 +89,7 @@ class DrawerContent extends Component{
     return(
         <Container>
          
-        <Thumbnail style={{width:'100%',height:'30%'}} source={{}} />
+        <Thumbnail style={{width:'100%',height:'30%'}} source={require('./../student.jpg')} />
 
         <ScrollView showsVerticalScrollIndicator={false}>
 

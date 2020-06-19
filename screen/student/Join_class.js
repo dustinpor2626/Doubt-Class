@@ -16,10 +16,13 @@ class  JoinClass extends Component{
     }   
 
 componentDidMount(){
-    this.setemail();
+    setInterval(() => {
+        this.setemail();
+    },1000);
 }
 
 setemail =async () => {
+
     this.setState({email:await AsyncStorage.getItem('email')});
 
     firebase.database().ref('Student/' + this.state.email.replace('.',''))
@@ -33,6 +36,8 @@ setemail =async () => {
 
 
 onJoin = () => {
+
+if(this.state.faculty_email != '' && this.state.code != ''){
 
         firebase.database().ref('Faculty/' + this.state.faculty_email.replace('.',''))
         .once('value',data => {
@@ -49,14 +54,16 @@ onJoin = () => {
                     })
                 }
         })
-
+    }else{
+        alert('Incomplete info');
+    }
 }
 
 
 checkDublicate = () => {
 
     firebase.database().ref('Faculty/' + this.state.faculty_email.replace('.','') + '/code/' + this.state.code + '/Participants')
-    .orderByChild('email')
+    .orderByChild('Email')
     .equalTo(this.state.email)
     .once('value',data => {
             if(data.val()){

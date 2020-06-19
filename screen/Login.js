@@ -17,6 +17,8 @@ state={
     confirm_password:'',
     hide_password:true,
     pass_icon:'eye-off',
+    signin_icon:'eye-off',
+    signin_password:true,
 } 
 
 componentDidMount(){
@@ -113,6 +115,19 @@ hidePass(){
   }
 }
 
+
+signINPass(){
+  if(!this.state.signin_password)
+  {
+    this.setState({signin_password:true});
+    this.setState({signin_icon:'eye-off'});
+  }else{
+    this.setState({signin_password:false});
+    this.setState({signin_icon:'eye'});
+  }
+}
+
+
   
 render(){  
 
@@ -128,8 +143,9 @@ render(){
               <Input onChangeText={(text) => this.setState({email:text})} />
             </Item>
             <Item floatingLabel last>
+            <Icon name={this.state.signin_icon} onPress={() => this.signINPass()} />
               <Label>Password</Label>
-              <Input onChangeText={(text) => this.setState({password:text})} />
+              <Input onChangeText={(text) => this.setState({password:text})} secureTextEntry = {this.state.signin_password}/>
             </Item>
           </Form>
 

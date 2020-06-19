@@ -205,20 +205,21 @@ close = () => {
 })}
        
 </ScrollView>
-</Content>
-
-      <Footer style={{backgroundColor:'white'}}>
-      
-      <Content>
+  
           <Item rounded > 
 
             <Input placeholder='Reply' onChangeText={(text) => this.setState({reply:text})} />
 
-            <Text style={{marginRight:20,color:'blue',fontWeight:'bold',marginLeft:5}} onPress={() => this.sendReply()}>Send</Text>
+            <Text style={{marginRight:20,color:'blue',fontWeight:'bold',marginLeft:5}} onPress={() => {
+              if(this.state.reply != '')
+              this.sendReply();
+              else
+                alert('Nothing to reply');
+              
+              }}>Send</Text>
 
           </Item>
         </Content>
-        </Footer>
         
       </Container>
     )

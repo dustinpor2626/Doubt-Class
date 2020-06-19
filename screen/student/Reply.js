@@ -38,7 +38,7 @@ getfacultyname  = () => {
 
     firebase.database().ref('Faculty/' + this.state.faculty_email.replace('.',''))
     .orderByChild('Name')
-    .once('value',data => {
+    .on('value',data => {
         if(data.val()){
             var x = Object.values(data.val());
             var y = x['0'].Name;
@@ -72,6 +72,8 @@ fetch = () => {
 
 sendReply = () => {
 
+  if(this.state.reply != ''){
+
   firebase.database().ref('Faculty/' + this.state.faculty_email.replace('.','') + '/code/' + this.state.sub_code + '/comment/' + this.state.key + '/Reply')
   .push({
     reply:this.state.reply,
@@ -80,9 +82,14 @@ sendReply = () => {
   });
 
   this.props.navigation.replace('studentSubject',{
-    sub_code:this.state.sub_code, 
+    sub_code:this.state.sub_code,
     faculty_email:this.state.faculty_email,
-  })
+  });
+
+}else{
+  alert('Nothing to reply');
+}
+
 }
 
 
@@ -194,11 +201,8 @@ return(
 })}
 
 </ScrollView>
-</Content>
 
-      <Footer style={{backgroundColor:'white'}}>
-      
-      <Content>
+
           <Item rounded > 
 
             <Input placeholder='Reply' onChangeText={(text) => this.setState({reply:text})} />
@@ -207,8 +211,7 @@ return(
 
           </Item>
         </Content>
-        </Footer>
-        
+
       </Container>
     )
   }
