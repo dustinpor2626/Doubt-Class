@@ -16,7 +16,7 @@ export default class DoubtForm extends Component {
 
     componentDidMount(){
         this.getmail();
-        setTimeout(() => {
+        setInterval(() => {
             firebase.database().ref('Student/' + this.state.email.replace('.',''))
             .on('value',data => {
                 if(data.val()){
@@ -25,14 +25,14 @@ export default class DoubtForm extends Component {
                     this.setState({name:y});
                 }
             })
-        },0)
+        },1000)
     }
 
 
-    getmail = async () => this.setState({email:await AsyncStorage.getItem('email')});
+  getmail = async () => this.setState({email:await AsyncStorage.getItem('email')});
 
 
-sentComment = () =>{
+sentComment = () => {
 
     if(this.state.topic != '' && this.state.doubt != ''){
 
@@ -45,12 +45,13 @@ sentComment = () =>{
             time:Date.now(),
             replied:false,
             closed:false,
-        })
+        });
 
         this.props.navigation.navigate('studentSubject',{
-            sub_code:this.props.navigation.state.params.sub_code,
-            faculty_email:this.props.navigation.state.params.faculty_email,
+            sub_code:this.state.sub_code,
+            faculty_email:this.state.faculty_email,
         });
+        
         alert('doubt sent');
     }else{
         alert('need to fill both');

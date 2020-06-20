@@ -99,6 +99,11 @@ close = () => {
     .update({closed:true});
   
       this.setState({button_close:'Closed'});
+
+      this.props.navigation.replace('studentSubject',{
+        sub_code:this.state.sub_code,
+        faculty_email:this.state.faculty_email,
+      });
   }
   
 

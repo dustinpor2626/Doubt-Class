@@ -107,6 +107,19 @@ close = () => {
   .update({closed:true});
 
     this.setState({button_close:'Closed'});
+
+    if(this.props.navigation.state.params.go == 'sub'){
+      this.props.navigation.navigate('teacherSubject',{
+      sub_code:this.state.sub_code,
+      sub: this.getsubject(this.state.sub_code),
+})
+}else{
+this.props.navigation.navigate('doubt',{
+  sub_code:this.state.sub_code,
+  sub: this.getsubject(this.state.sub_code),
+})
+}
+
 }
 
 

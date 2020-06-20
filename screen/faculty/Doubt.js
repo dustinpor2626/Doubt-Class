@@ -45,7 +45,7 @@ remove = (time) => {
             firebase.database().ref('Faculty/' + this.state.email.replace('.','') + '/code/' + this.state.sub_code + '/comment/' + x)
             .remove()
         }
-  })
+  });
 
 }
 
@@ -55,6 +55,7 @@ remove = (time) => {
         else
             this.setState({drawer:false})
   };
+
 
   reply = (data) => {
     if(data){

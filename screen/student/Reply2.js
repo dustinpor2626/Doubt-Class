@@ -88,7 +88,7 @@ fetch = () => {
               </Body>
             </CardItem>
             <CardItem footer bordered>
-    <Text>{new Date(this.state.time).toUTCString().replace('GMT','')}</Text>
+    <Text note >{new Date(this.state.time).toUTCString().replace('GMT','')}</Text>
             </CardItem>
           </Card>
           <Separator><Text>Replies</Text></Separator>
